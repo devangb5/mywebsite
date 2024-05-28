@@ -1,37 +1,46 @@
 <!DOCTYPE html>
 <html>  
-<title></title>
-<style>
-.Top-bar{
-    background-color: black;
-    color:white;
-    text-align:center;
-    weight:bold
-    font
-    }
-    ul {
-  list-style-type: none;
-  display: inline;
-  margin: 0;
-  padding: 0;
-}
-</style>
-<div class ="Top-bar">Explore Louisville </div>
-<ul>
-  <li><a href="#home">Home</a></li>
-  <li><a href="#contact">Contact</a></li>
-  <li style="float:right"><a class="active" href="#about">About</a></li>
-</ul>
-<head>
-    <title>Sample</title>
-    </head>
-    <body>
+    <head>
+        <title>Explore Louisville</title>
     
-    <h1 style ="text-align: center;"></h1>
-     
-    <div style="text-align:center;"><iframe src="https://www.google.com/maps/d/embed?mid=1gBXqYnTePFYxi6v1qJZnoFWL_kWLavs&ehbc=2E312F&noprof=1" width="640" height="480"></iframe></div>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     
-    
-    </body>
-
+        <link rel="stylesheet" href="styles/general.css">
+        <link rel="stylesheet" href="styles/header.css">
+        <link rel="stylesheet" href="styles/video.css">
+        <link rel="stylesheet" href="styles/sidebar.css">
+      </head>
+      <body>
+        <header class="header">
+          <div class="left-section">
+            <img class="hamburger-menu" src="icons/hamburger-menu.svg">
+            
+          </div>
+          <div class="middle-section">
+            <img class="youtube-logo" src="icons/logo.png">
+            
+          </div>
+          <div class="right-section">
+            <input class="search-bar" type="text" placeholder="Search">
+            <button class="search-button">
+              <img class="search-icon" src="icons/search.svg">
+              <div class="tooltip">Search</div>
+            </button>
+            <!-- Put position absolute inside position relative -->
+            <div class="upload-icon-container">
+              <div class="tooltip">Create</div>
+            </div>
+            <img class="current-user-picture" src="channel-pictures/my-channel.jpeg">
+          </div>
+        </header>
+          <div style="text-align:center;"><iframe src="https://www.google.com/maps/d/embed?mid=1gBXqYnTePFYxi6v1qJZnoFWL_kWLavs&ehbc=2E312F&noprof=1" width="640" height="480"></iframe></div>  
+      </body>
+  
 </html>
+
+     
+    
+    
+
