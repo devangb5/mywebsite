@@ -1,117 +1,100 @@
 <!DOCTYPE html>
-<html>  
-    <head>
-        <title>Explore Louisville</title>
-    
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    
-        <link rel="stylesheet" href="styles/general.css">
-        <link rel="stylesheet" href="styles/header.css">
-        <link rel="stylesheet" href="styles/sidebar.css">
-        <link rel="stylesheet" href="styles/image.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      </head>
-      <body>
-        <header class="header">
-          <div class="left-section">
-            
+<html>
+<!---title and links -->
+<head>
+    <title>Explore Louisville</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles/general.css">
+    <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/sidebar.css">
+    <link rel="stylesheet" href="styles/image.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <!------------header and links ---------------->
+    <header id="Myheader" class="header">
+        <div class="left-section">
+
             <div id="mySidenav" class="sidenav">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                 <a href="#">About</a>
-                <a href="#">Images</a>
+                <a href="image.html">Images</a>
                 <a href="#">Blogs</a>
                 <a href="interactivemap.html">Map</a>
                 <a href="#">Contact</a>
-              </div>
-              
-              <div id="main">
+            </div>
+
+            <div id="main">
                 <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
-              </div>
-              
-              <script>
-              function openNav() {
-                document.getElementById("mySidenav").style.width = "250px";
-                document.getElementById("main").style.marginLeft = "250px";
-              }
-              
-              function closeNav() {
-                document.getElementById("mySidenav").style.width = "0";
-                document.getElementById("main").style.marginLeft= "0";
-              }
-              </script>
-            
-          </div>
-          <div class="middle-section">
+            </div>
+        </div>
+        <div class="middle-section">
             <a href="website.html"><img class="skyline" src="icons/sky.jpeg"></a>
-            
-          </div>
-          <div class="right-section">
-             <img class="logo" src="icons/logo.png">
-          </div>
-        </header>
-        <h1>Coming Soon!</h1>
-        <!-- Slideshow container -->
-<div class="slideshow-container">
 
-    <!-- Full-width images with number and caption text -->
-    <div class="mySlides fade">
-      <div class="numbertext">1 / 2</div>
-      <img src="img1.JPG" style="width:100%">
-      <div class="text">Caption Text</div>
+        </div>
+        <div class="right-section">
+
+            <img class="logo" src="icons/logo.png">
+        </div>
+
+    </header>
+     <!--------------------------banner------------->  
+    <div class="bridge"><img src="icons/bridge.PNG">
+                    <div class ="banner-title">Around The Ville</div>
+    
+                    
+                </div>
+    <!--------------Tab bar for navigation-------->
+    <div class="tabbar">
+
+
+        <div class="tabbar-content"><a href="index.html">Home</button></a></div>
+        <div class="tabbar-content"><a href="#">Explore</a>
+            <div class="dropdown-content">
+                <a href="#">Link 1</a>
+                <a href="#">Link 2</a>
+                <a href="#">Link 3</a>
+            </div>
+        </div>
+        <div class="tabbar-content"><a href="#">Category</a></div>
+        <div class="tabbar-content"><a href="#">Resources</a></div>
+
+
     </div>
-  
-    <div class="mySlides fade">
-      <div class="numbertext">2 / 2</div>
-      <img src="img2.jpeg" style="width:100%">
-      <div class="text">Caption Two</div>
+
+    <!---------Home page and content -------------->
+    <h1 style="text-align: center;">Heading</h1>
+    <div class="post-container">
+
+        <div class="post"><img src="icons/FT1.jpeg" class="post-image" ><div class="post-middle">
+            <div class="post-title"><a href="#">John Doe</a></div></div></div>
+            <div class="post"><img src="icons/FT2.jpeg" class="post-image" ><div class="post-middle">
+                <div class="post-title"><a href="#">John Doe</a></div></div></div>
+                <div class="post"><img src="icons/FT3.jpeg" class="post-image" ><div class="post-middle">
+                    <div class="post-title"><a href="#">John Doe</a></div></div></div>
+       
     </div>
-  
-    
-  
-    <!-- Next and previous buttons -->
-    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-    <a class="next" onclick="plusSlides(1)">&#10095;</a>
-  </div>
-  <br>
-  
-  <!-- The dots/circles -->
-  <div style="text-align:center">
-    <span class="dot" onclick="currentSlide(1)"></span>
-    <span class="dot" onclick="currentSlide(2)"></span>
 
-  </div>
-  <script>
-    let slideIndex = 1;
-    showSlides(slideIndex);
     
-    function plusSlides(n) {
-      showSlides(slideIndex += n);
-    }
-    
-    function currentSlide(n) {
-      showSlides(slideIndex = n);
-    }
-    
-    function showSlides(n) {
-      let i;
-      let slides = document.getElementsByClassName("mySlides");
-      let dots = document.getElementsByClassName("dot");
-      if (n > slides.length) {slideIndex = 1}    
-      if (n < 1) {slideIndex = slides.length}
-      for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";  
-      }
-      for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
-      }
-      slides[slideIndex-1].style.display = "block";  
-      dots[slideIndex-1].className += " active";
-    }
-    </script>
+    <div class="content">
+        <!-- Your content here -->
+
+    </div>
+    <button onclick="topFunction()" id="myBtn" title="Go to top">&#8679;</button>
+
+    <footer class="footer">
+        <p>This space is reserved for footer</p>
+    </footer>
+    <script src="script.js"></script>
 
 
-        
-     </body>
+
+
+</body>
+
 </html>
