@@ -8,7 +8,7 @@
 	>
 
 <channel>
-	<title></title>
+	<title>Around The Ville</title>
 	<atom:link href="./index.html" rel="self" type="application/rss+xml" />
 	<link>./../../index.html</link>
 	<description></description>
@@ -21,15 +21,15 @@
 	<generator>https://wordpress.org/?v=6.5.3</generator>
 
 <image>
-	<url>./../../wp-content/uploads/2024/06/cropped-cover-1-e1717438424999-150x150.png</url>
-	<title></title>
+	<url>./../../wp-content/uploads/2024/06/default-1-e1717589804709-150x150.png</url>
+	<title>Around The Ville</title>
 	<link>./../../index.html</link>
 	<width>32</width>
 	<height>32</height>
 </image> 
 	<item>
 		<title>Hello world!</title>
-		<link>./../2024/06/03/hello-world/index.html</link>
+		<link>./../2024/06/03/hello-world/index.html?utm_source=rss#038;utm_medium=rss&#038;utm_campaign=hello-world</link>
 					<comments>./../2024/06/03/hello-world/index.html#comments</comments>
 		
 		<dc:creator><![CDATA[devangb5]]></dc:creator>
