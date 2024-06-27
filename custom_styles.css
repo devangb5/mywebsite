@@ -4,3 +4,8 @@
         display:none;
     }
 }
+
+.wp-block-cover-image.has-parallax{
+  background-size: cover;
+  background-attachment: fixed;
+}
