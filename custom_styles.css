@@ -5,8 +5,9 @@
     }
 }
 
-.break{
-
-    background-attachment:local;
-
+@media screen and (max-width: 768px) {
+    .break {
+        
+        background-attachment: local; 
+    }
 }
