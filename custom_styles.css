@@ -15,3 +15,8 @@
      /* Override for smaller screens */
   }
 }
+
+.wp-block-navigation-item__content{
+  font-size: 15px;
+  
+}
