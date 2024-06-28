@@ -5,15 +5,11 @@
     }
 }
 
-.wp-block-cover-image.has-parallax{
-  
- position: fixed;
-}
-@media (max-width: 768px) {
-  .wp-block-cover-image.has-parallax{
-    background-attachment: fixed;
-     /* Override for smaller screens */
-  }
+@media screen and (max-width: 768px) {
+    .break {
+        
+        background-attachment: local; 
+    }
 }
 
 .wp-block-navigation-item__content{
