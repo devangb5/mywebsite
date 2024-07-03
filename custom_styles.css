@@ -1,15 +1,7 @@
 
-@media screen and (min-width:768px){
+@media screen and (min-width:780px){
     .hero_mobile {
         display:none;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .break {
-        
-        background-attachment: local; 
-    
     }
 }
 
@@ -59,6 +51,13 @@
 
  .img-button, .explore-button {
     margin-top: 20px;
+    
+ }
+ .img-container{
+  color: white;
  }
 
- 
+ .img-desc{
+  margin-top:0px;
+ }
+ .img-title{ margin:0px}
