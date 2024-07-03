@@ -66,3 +66,27 @@
  width:100%;
  height:auto;
  }
+@media screen and (min-width:800px){
+ .wp-block-cover.aligncenter.has-aspect-ratio:hover {
+ transform: scale(1.1)
+ }
+
+ .wp-block-button__link.has-contrast-light-color.has-text-color.has-link-color.has-text-align-center.wp-element-button{
+  transition: .1s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+
+ }
+
+ .wp-block-cover.aligncenter.has-aspect-ratio:hover {
+  opacity:0.8;
+ }
+ .wp-block-button__link.has-contrast-light-color.has-text-color.has-link-color.has-text-align-center.wp-element-button:hover {
+  opacity:1;
+ }
+}
