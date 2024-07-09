@@ -58,7 +58,11 @@
  }
 
  .img-desc{
-  margin-top:0px;
+  
+  font-size:x-large;
+ color:rgb(255, 255, 255) !important;
+ 
+  
  }
  .img-title{ margin:0px}
 
