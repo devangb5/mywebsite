@@ -142,7 +142,11 @@
   color: rgb(65,33,15);
 }
 
+.section{
 
+  color: rgb(65,33,15);
+}
+ .section h2{margin:10px}
 
 
 @media (max-width: 768px) {
@@ -159,9 +163,34 @@
 
 
 .article-text{text-align: justify;
- padding: 10px;
+ padding: 10px 10px 10px 10px;
  margin:0 !important;
  color: rgb(65,33,15);
+ 
+}
+.article-text a {
+  text-decoration: underline;
+  color: blue;
+}
+
+.toc {
+  
+  padding: 10px;
+  
+}
+.toc ul {
+  list-style-type: none;
+  padding: 0;
+}
+.toc li {
+  margin-bottom: 5px;
+}
+.toc a {
+  text-decoration: none;
+  color: rgb(65,33,15);
+}
+.toc a:hover {
+  text-decoration: underline;
 }
 
 /* Off canvas close button fix */
