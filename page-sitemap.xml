@@ -9,47 +9,68 @@
 
 <url>
   <loc>https://aroundtheville.com/</loc>
-  <lastmod>2024-07-22T13:31:11+00:00</lastmod>
+  <lastmod>2024-08-08T23:29:54+00:00</lastmod>
   <priority>1.00</priority>
 </url>
-<url>
-  <loc>https://aroundtheville.com/index.html</loc>
-  <lastmod>2024-07-22T13:31:11+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
+
 <url>
   <loc>https://aroundtheville.com/blogs/index.html</loc>
-  <lastmod>2024-07-22T13:31:11+00:00</lastmod>
+  <lastmod>2024-08-08T23:29:54+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://aroundtheville.com/178-2/index.html</loc>
-  <lastmod>2024-07-22T13:31:11+00:00</lastmod>
+  <lastmod>2024-08-08T23:29:54+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://aroundtheville.com/contact/index.html</loc>
-  <lastmod>2024-07-22T13:31:11+00:00</lastmod>
+  <lastmod>2024-08-08T23:29:54+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://aroundtheville.com/about/index.html</loc>
-  <lastmod>2024-07-22T13:31:11+00:00</lastmod>
+  <lastmod>2024-08-08T23:29:54+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://aroundtheville.com/coming-soon.html</loc>
-  <lastmod>2024-07-22T13:31:11+00:00</lastmod>
+  <lastmod>2024-08-08T23:29:54+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://aroundtheville.com/food-truck-blogs/</loc>
-  <lastmod>2024-07-22T13:31:11+00:00</lastmod>
+  <lastmod>2024-08-08T23:29:55+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
+  <loc>https://aroundtheville.com/restaurant-bar/</loc>
+  <lastmod>2024-08-08T23:29:55+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://aroundtheville.com/food-truck-blogs/woof-n-waggin/</loc>
+  <lastmod>2024-08-08T23:29:54+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://aroundtheville.com/food-truck-blogs/acme-chicken-bowls/</loc>
+  <lastmod>2024-08-08T23:29:54+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
   <loc>https://aroundtheville.com/food-truck-blogs/index.html</loc>
-  <lastmod>2024-07-22T13:31:11+00:00</lastmod>
+  <lastmod>2024-08-08T23:29:54+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://aroundtheville.com/restaurant-bar/restaurant/noosh-nosh/</loc>
+  <lastmod>2024-08-08T23:29:55+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://aroundtheville.com/restaurant-bar/index.html</loc>
+  <lastmod>2024-08-08T23:29:54+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 
