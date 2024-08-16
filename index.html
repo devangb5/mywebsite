@@ -429,41 +429,36 @@ body{--wp--preset--duotone--blue-red:url(#wp-duotone-blue-red);}</style>
 	  measurementId: "G-8G3SJQ59JE"
 	};
   
-	// Initialize Firebase
-	const app = initializeApp(firebaseConfig);
-	const analytics = getAnalytics(app);
-	
-	const messaging = getMessaging(app);
 
 	import { getMessaging, getToken } from "firebase/messaging";
 
    
-// Add the public key generated from the console here.
-   getToken(messaging, {vapidKey: "BLYCHdTcgSGA4gBBEMFD-UC0SHeLfRJoANdmj3TFSh-aRmTbVq2UbLXZ2UP1ziVjV4CTxZHv5bYIiHthwljNCME"});
-
-   
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const messaging = firebase.messaging();
 
         // Request permission to send notifications
         function requestPermission() {
             messaging.requestPermission()
-            .then(function() {
+            .then(() => {
                 console.log('Notification permission granted.');
                 // Get the token
                 return messaging.getToken();
             })
-            .then(function(token) {
-                console.log('FCM Token:', token);
-                // Send the token to your server or use it to send a message
+            .then((token) => {
+                console.log('FCM Registration Token:', token);
+                // Save the token to your server/database
             })
-            .catch(function(err) {
+            .catch((err) => {
                 console.log('Unable to get permission to notify.', err);
             });
         }
 
-        // Subscribe button click
+        // Handle subscription button click
         document.getElementById('subscribe').onclick = function() {
             requestPermission();
         };
+
   </script>
   <script src="./firebase-messaging-sw.js"></script>
 </body>
