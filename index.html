@@ -355,7 +355,9 @@ body{--wp--preset--duotone--blue-red:url(#wp-duotone-blue-red);}</style>
 <div id="makeiteasy-back-to-top" data-smooth-scroll="true" data-enable-on-desktop="true" data-break-point-mobile-desktop="768" data-go-to-bottom="false" style="--makeiteasy-back-to-top-opacity:1;--makeiteasy-back-to-top-visibility-transition-duration:0.3s;--makeiteasy-back-to-top-right:30px;--makeiteasy-back-to-top-bottom:30px" class="wp-block-makeiteasy-back-to-top">
 <div class="wp-block-button has-custom-width wp-block-button__width-25"><a class="wp-block-button__link has-contrast-light-color has-mono-1-background-color has-text-color has-background has-link-color wp-element-button" style="border-radius:52px;padding-top:12px;padding-right:12px;padding-bottom:12px;padding-left:12px"><img loading="lazy" width="24" height="24" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCA5NiA0ODAgMjgzIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Im00MyAzNzktNDMtNDMgMjQwLTI0MCAyNDAgMjQwLTQzIDQzLTE5Ny0xOTd6IiBmaWxsPSIjZmZmIi8+PC9zdmc+Cg==" alt="Back to top arrow"></a></div>
 </div>
-
+<div id="mySidenav" class="sidenav">
+	<button id="subscribe">SUBSCRIBE</button>
+ </div>
 
 <footer class="wp-block-template-part">
 <div class="wp-block-group alignwide superbthemes-footer-001 has-contrast-light-color has-mono-2-background-color has-text-color has-background has-link-color wp-elements-76444b0d62bb4f0277264fbc18e81a3c has-global-padding is-layout-constrained wp-container-core-group-is-layout-12 wp-block-group-is-layout-constrained" style="border-top-color:var(--wp--preset--color--mono-3);margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--superbspacing-medium);padding-right:var(--wp--preset--spacing--superbspacing-xsmall);padding-bottom:var(--wp--preset--spacing--superbspacing-medium);padding-left:var(--wp--preset--spacing--superbspacing-xsmall)">
@@ -406,6 +408,52 @@ body{--wp--preset--duotone--blue-red:url(#wp-duotone-blue-red);}</style>
       // Scroll smoothly to the content section
       document.getElementById('content').scrollIntoView({ behavior: 'smooth' });
     }
+  </script>
+  <script type="module">
+	// Import the functions you need from the SDKs you need
+	import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+	import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-analytics.js";
+	// TODO: Add SDKs for Firebase products that you want to use
+	// https://firebase.google.com/docs/web/setup#available-libraries
+  
+	// Your web app's Firebase configuration
+	// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+	const firebaseConfig = {
+	  apiKey: "AIzaSyCPPrwO_kXf3g4LcXn1pQgv3ArdZITMljo",
+	  authDomain: "push-notificcations.firebaseapp.com",
+	  projectId: "push-notificcations",
+	  storageBucket: "push-notificcations.appspot.com",
+	  messagingSenderId: "48222894503",
+	  appId: "1:48222894503:web:079a49a0476ef594d79e82",
+	  measurementId: "G-8G3SJQ59JE"
+	};
+  
+	// Initialize Firebase
+	const app = initializeApp(firebaseConfig);
+	const analytics = getAnalytics(app);
+	const messaging = firebase.messaging();
+
+        // Request permission to send notifications
+        function requestPermission() {
+            messaging.requestPermission()
+            .then(function() {
+                console.log('Notification permission granted.');
+                // Get the token
+                return messaging.getToken();
+            })
+            .then(function(token) {
+                console.log('FCM Token:', token);
+                // Send the token to your server or use it to send a message
+            })
+            .catch(function(err) {
+                console.log('Unable to get permission to notify.', err);
+            });
+        }
+
+        // Subscribe button click
+        document.getElementById('subscribe').onclick = function() {
+            requestPermission();
+        };
   </script>
 </body>
 </html>
