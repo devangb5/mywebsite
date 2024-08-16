@@ -1,18 +1,18 @@
 // firebase-messaging-sw.js
 
 
-importScripts('https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js');
-importScripts('https://www.gstatic.com/firebasejs/9.1.0/firebase-messaging.js');
+importScripts('https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js');
+importScripts('https://www.gstatic.com/firebasejs/10.13.0/firebase-analytics.js');
 
 
 firebase.initializeApp({
-    apiKey: "AIzaSyCPPrwO_kXf3g4LcXn1pQgv3ArdZITMljo",
-	  authDomain: "push-notificcations.firebaseapp.com",
-	  projectId: "push-notificcations",
-	  storageBucket: "push-notificcations.appspot.com",
-	  messagingSenderId: "48222894503",
-	  appId: "1:48222894503:web:079a49a0476ef594d79e82",
-	  measurementId: "G-8G3SJQ59JE"
+    apiKey: "AIzaSyCVeeFxPw1jF5f_rHyofYg0fOEXD3qivbw",
+    authDomain: "push-38cca.firebaseapp.com",
+    projectId: "push-38cca",
+    storageBucket: "push-38cca.appspot.com",
+    messagingSenderId: "311060497968",
+    appId: "1:311060497968:web:feb247239ee93c067ccff5",
+    measurementId: "G-HXG39MJW55"
 });
 
 const messaging = firebase.messaging();

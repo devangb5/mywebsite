@@ -409,57 +409,31 @@ body{--wp--preset--duotone--blue-red:url(#wp-duotone-blue-red);}</style>
       document.getElementById('content').scrollIntoView({ behavior: 'smooth' });
     }
   </script>
-  <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-messaging.js"></script>
+ 
 
-
-  <script>
+ <script type="module">
 	// Import the functions you need from the SDKs you need
-	
-	
-	
+	import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+	import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-analytics.js";
 	// TODO: Add SDKs for Firebase products that you want to use
 	// https://firebase.google.com/docs/web/setup#available-libraries
   
 	// Your web app's Firebase configuration
 	// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-	
 	const firebaseConfig = {
-	  apiKey: "AIzaSyCPPrwO_kXf3g4LcXn1pQgv3ArdZITMljo",
-	  authDomain: "push-notificcations.firebaseapp.com",
-	  projectId: "push-notificcations",
-	  storageBucket: "push-notificcations.appspot.com",
-	  messagingSenderId: "48222894503",
-	  appId: "1:48222894503:web:079a49a0476ef594d79e82",
-	  measurementId: "G-8G3SJQ59JE"
+	  apiKey: "AIzaSyCVeeFxPw1jF5f_rHyofYg0fOEXD3qivbw",
+	  authDomain: "push-38cca.firebaseapp.com",
+	  projectId: "push-38cca",
+	  storageBucket: "push-38cca.appspot.com",
+	  messagingSenderId: "311060497968",
+	  appId: "1:311060497968:web:feb247239ee93c067ccff5",
+	  measurementId: "G-HXG39MJW55"
 	};
-     // Initialize Firebase
-	 firebase.initializeApp(firebaseConfig);
-
-// Initialize Firebase Messaging
-const messaging = firebase.messaging();
-
-// Request permission to send notifications
-function requestPermission() {
-	messaging.requestPermission()
-	.then(() => {
-		console.log('Notification permission granted.');
-		return messaging.getToken();
-	})
-	.then((token) => {
-		console.log('FCM Registration Token:', token);
-		// Save the token to your server/database
-	})
-	.catch((err) => {
-		console.log('Unable to get permission to notify.', err);
-	});
-}
-
-// Handle subscribe button click
-document.getElementById('subscribe').onclick = function() {
-	requestPermission();
-};
-</script>
+  
+	// Initialize Firebase
+	const app = initializeApp(firebaseConfig);
+	const analytics = getAnalytics(app);
+  </script>
 
 <script>
     if ('serviceWorker' in navigator) {
