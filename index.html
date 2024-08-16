@@ -409,10 +409,11 @@ body{--wp--preset--duotone--blue-red:url(#wp-duotone-blue-red);}</style>
       document.getElementById('content').scrollIntoView({ behavior: 'smooth' });
     }
   </script>
-  <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-messaging.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-messaging.js"></script>
 
-  <script type="module">
+
+  <script>
 	// Import the functions you need from the SDKs you need
 	
 	
@@ -422,6 +423,7 @@ body{--wp--preset--duotone--blue-red:url(#wp-duotone-blue-red);}</style>
   
 	// Your web app's Firebase configuration
 	// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+	
 	const firebaseConfig = {
 	  apiKey: "AIzaSyCPPrwO_kXf3g4LcXn1pQgv3ArdZITMljo",
 	  authDomain: "push-notificcations.firebaseapp.com",
@@ -431,40 +433,37 @@ body{--wp--preset--duotone--blue-red:url(#wp-duotone-blue-red);}</style>
 	  appId: "1:48222894503:web:079a49a0476ef594d79e82",
 	  measurementId: "G-8G3SJQ59JE"
 	};
-    // Initialize Firebase
-	firebase.initializeApp(firebaseConfig);
+     // Initialize Firebase
+	 firebase.initializeApp(firebaseConfig);
 
 // Initialize Firebase Messaging
 const messaging = firebase.messaging();
+
+// Request permission to send notifications
+function requestPermission() {
+	messaging.requestPermission()
+	.then(() => {
+		console.log('Notification permission granted.');
+		return messaging.getToken();
+	})
+	.then((token) => {
+		console.log('FCM Registration Token:', token);
+		// Save the token to your server/database
+	})
+	.catch((err) => {
+		console.log('Unable to get permission to notify.', err);
+	});
+}
+
+// Handle subscribe button click
+document.getElementById('subscribe').onclick = function() {
+	requestPermission();
+};
 </script>
 
-	
-
-<script>
-    function requestPermission() {
-        messaging.requestPermission()
-        .then(() => {
-            console.log('Notification permission granted.');
-            // Get the token
-            return messaging.getToken();
-        })
-        .then((token) => {
-            console.log('FCM Registration Token:', token);
-            // Save the token to your server/database for later use
-        })
-        .catch((err) => {
-            console.log('Unable to get permission to notify.', err);
-        });
-    }
-
-    // Handle the subscribe button click
-    document.getElementById('subscribe').onclick = function() {
-        requestPermission();
-    };
-</script>
 <script>
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/firebase-messaging-sw.js')
+        navigator.serviceWorker.register('./firebase-messaging-sw.js')
         .then(function(registration) {
             console.log('Service Worker registered with scope:', registration.scope);
         })
