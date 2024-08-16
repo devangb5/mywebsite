@@ -3,6 +3,7 @@
 
 importScripts('https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/10.13.0/firebase-analytics.js');
+importScripts('https://www.gstatic.com/firebasejs/10.13.0/firebase-messaging.js')
 
 
 firebase.initializeApp({
