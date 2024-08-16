@@ -25,3 +25,27 @@ messaging.onBackgroundMessage(function(payload) {
 
     self.registration.showNotification(notificationTitle, notificationOptions);
 });
+
+messaging.requestPermission()
+  .then(() => {
+    console.log('Notification permission granted.');
+    // Get the token
+    return messaging.getToken();
+  })
+  .then((token) => {
+    console.log('FCM Registration Token:', token);
+    // Send this token to your server to store it and use it for sending notifications
+  })
+  .catch((err) => {
+    console.log('Unable to get permission to notify.', err);
+  });
+  messaging.onTokenRefresh(() => {
+    messaging.getToken()
+      .then((refreshedToken) => {
+        console.log('Token refreshed:', refreshedToken);
+        // Save the new token to your server
+      })
+      .catch((err) => {
+        console.log('Unable to retrieve refreshed token ', err);
+      });
+  });
