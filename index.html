@@ -78,8 +78,9 @@
 
   gtag('config', 'G-TYCR7B2T5J');
 </script>
-<script defer type ="module" src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js"></script>
-<script defer type ="module" src="https://www.gstatic.com/firebasejs/10.13.0/firebase-messaging.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js"></script>
+
+<script defer  src="https://www.gstatic.com/firebasejs/10.13.0/firebase-messaging.js"></script>
 
 <style id="wp-block-navigation-link-inline-css">.wp-block-navigation .wp-block-navigation-item__label{overflow-wrap:break-word}.wp-block-navigation .wp-block-navigation-item__description{display:none}.link-ui-tools{border-top:1px solid #f0f0f0;padding:8px}.link-ui-block-inserter{padding-top:8px}.link-ui-block-inserter__back{margin-left:8px;text-transform:uppercase}.components-popover-pointer-events-trap{background-color:initial;cursor:pointer;inset:0;position:fixed;z-index:1000000}</style>
 <link rel="stylesheet" id="wp-block-navigation-css" href="./wp-includes/blocks/navigation/style.min.css?ver=6.5.5" media="all">
@@ -412,83 +413,69 @@ body{--wp--preset--duotone--blue-red:url(#wp-duotone-blue-red);}</style>
       document.getElementById('content').scrollIntoView({ behavior: 'smooth' });
     }
   </script>
-<script type="module">
-	// Your web app's Firebase configuration
-import {initializeApp} from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js'
 
-import { getMessaging,getToken,onMessage} from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-messaging.js'
-const firebaseConfig = {
-  apiKey: "AIzaSyCVeeFxPw1jF5f_rHyofYg0fOEXD3qivbw",
-  authDomain: "push-38cca.firebaseapp.com",
-  databaseURL: "https://push-38cca-default-rtdb.firebaseio.com",
-  projectId: "push-38cca",
-  storageBucket: "push-38cca.appspot.com",
-  messagingSenderId: "311060497968",
-  appId: "1:311060497968:web:feb247239ee93c067ccff5",
-  measurementId: "G-HXG39MJW55"
-};
-  // Initialize Firebase
+
+	<script type="module">
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js';
+  import { getMessaging, getToken, onMessage } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-messaging.js';
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCVeeFxPw1jF5f_rHyofYg0fOEXD3qivbw",
+    authDomain: "push-38cca.firebaseapp.com",
+    databaseURL: "https://push-38cca-default-rtdb.firebaseio.com",
+    projectId: "push-38cca",
+    storageBucket: "push-38cca.appspot.com",
+    messagingSenderId: "311060497968",
+    appId: "1:311060497968:web:feb247239ee93c067ccff5",
+    measurementId: "G-HXG39MJW55"
+  };
   const app = initializeApp(firebaseConfig);
-    const messaging = getMessaging(app);
+  const messaging = getMessaging(app);
 
-    document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('subscribe').addEventListener('click', () => {
-        requestPermission();
-      });
+  // Request notification permission and get token
+  async function requestPermissionAndGetToken() {
+    try {
+      const permission = await Notification.requestPermission();
+      if (permission === 'granted') {
+        console.log('Notification permission granted.');
+        const token = await getToken(messaging, { vapidKey: ' BIY-MD_GAt2gzgWXmHpvR3ZlNlhSnNutGQekIQLc2ImYEpKJaS7LdqYKt8y4f6K_zoHrxJfAyjYQFoMONqxv4Tk ' });
+        console.log('FCM Token:', token);
+      } else {
+        console.log('Unable to get permission to notify.');
+      }
+    } catch (error) {
+      console.error('Error during notification setup:', error);
+    }
+  }
 
-      function requestPermission() {
-        return Notification.requestPermission().then((permission) => {
-          if (permission === 'granted') {
-            console.log('Notification permission granted.');
-            return getToken(messaging, { vapidKey: 'BIY-MD_GAt2gzgWXmHpvR3ZlNlhSnNutGQekIQLc2ImYEpKJaS7LdqYKt8y4f6K_zoHrxJfAyjYQFoMONqxv4Tk'}); // Replace with your VAPID key
-          } else {
-            console.log('Notification permission denied.');
-            throw new Error('Notification permission denied');
-          }
-        }).then((token) => {
-          console.log('FCM Token:', token);
-          // You might want to send this token to your server for later use
-        }).catch((err) => {
-          console.log('Unable to get permission to notify.', err);
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('subscribe').addEventListener('click', () => {
+      requestPermissionAndGetToken();
+    });
+
+    onMessage(messaging, (payload) => {
+      console.log('Message received:', payload);
+      const { title, body, icon } = payload.notification || {};
+      if (Notification.permission === 'granted') {
+        new Notification(title || 'No Title', {
+          body: body || 'No Body',
+          icon: icon || '/default-icon.png'
         });
       }
-
-      function handleMessage(payload) {
-        console.log('Message received. ', payload);
-        const { title, body, icon } = payload.notification;
-        if (Notification.permission === 'granted') {
-          new Notification(title, {
-            body: body,
-            icon: icon
-          });
-        }
-      }
-
-      // Register the service worker
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('firebase-messaging-sw.js')
-          .then((registration) => {
-            console.log('Service Worker registered with scope:', registration.scope);
-
-            // Set up background message handler
-            messaging.onBackgroundMessage((payload) => {
-              console.log('Background Message received:', payload);
-              registration.showNotification(payload.notification.title, {
-                body: payload.notification.body,
-                icon: payload.notification.icon,
-              });
-            });
-
-            // Set up foreground message handler
-            onMessage(messaging, (payload) => {
-              handleMessage(payload);
-            });
-          })
-          .catch((err) => {
-            console.log('Service Worker registration failed:', err);
-          });
-      }
     });
-  </script>
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/firebase-messaging-sw.js')
+        .then((registration) => {
+          console.log('Service Worker registered with scope:', registration.scope);
+        })
+        .catch((error) => {
+          console.error('Service Worker registration failed:', error);
+        });
+    }
+  });
+</script>
+
+  
 </body>
 </html>
