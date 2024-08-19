@@ -307,30 +307,3 @@ flex-wrap:wrap !important;
 }
 }
 
-/* Style the links inside the sidenav */
-
-
-
-
-	#subscribe {
-     top: 30%;
-	
-     background-color: orange;
-     position: fixed; /* Position them relative to the browser window */
-     right: -40px; /* Position them outside of the screen */
-     transition: 0.3s; /* Add transition on hover */
-     padding: 5px; /* 15px padding */
-     width: 60px; /* Set a specific width */
-     text-decoration: none; /* Remove underline */
-     font-size: 15px; /* Increase font size */
-     font-weight: bold;
-     color: white; /* White text color */
-     border-radius: 0 10px 10px 0; /* Rounded corners on the top right and bottom right side */
-     z-index: 1000;
-     writing-mode: vertical-rl; /* Rotate text 90 degrees */
-     transform: rotate(180deg);
-  }
-	
-  #subscribe:hover {
-	  right: 0px; /* On mouse-over, make the elements appear as they should */
-	}
