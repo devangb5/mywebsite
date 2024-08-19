@@ -14,6 +14,19 @@
 	<meta property="og:title" content="Around The Ville">
 	<meta property="og:url" content="https://aroundtheville.com/">
 	<meta property="og:site_name" content="Around The Ville">
+	<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "d9a3cbd1-f885-49a1-bb95-7ad0fc83cdf8",
+      safari_web_id: "web.onesignal.auto.38b1a4de-a361-440e-ae28-b71c05790af2",
+      notifyButton: {
+        enable: true,
+      },
+    });
+  });
+</script>
 	<script type="application/ld+json">
 		{
 			"@context": "https://schema.org",
@@ -408,19 +421,7 @@ body{--wp--preset--duotone--blue-red:url(#wp-duotone-blue-red);}</style>
       document.getElementById('content').scrollIntoView({ behavior: 'smooth' });
     }
   </script>
-<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-<script>
-  window.OneSignalDeferred = window.OneSignalDeferred || [];
-  OneSignalDeferred.push(async function(OneSignal) {
-    await OneSignal.init({
-      appId: "d9a3cbd1-f885-49a1-bb95-7ad0fc83cdf8",
-      safari_web_id: "web.onesignal.auto.38b1a4de-a361-440e-ae28-b71c05790af2",
-      notifyButton: {
-        enable: true,
-      },
-    });
-  });
-</script>
+
 
 </body>
 </html>
