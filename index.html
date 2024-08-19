@@ -11,7 +11,6 @@
 	<meta property="og:locale" content="en_US">
 	<meta property="og:type" content="website">
 	<meta property="og:image" content="https://aroundtheville.com/wp-content/uploads/2024/06/IMG_0046-scaled.jpg">
-
 	<meta property="og:title" content="Around The Ville">
 	<meta property="og:url" content="https://aroundtheville.com/">
 	<meta property="og:site_name" content="Around The Ville">
@@ -409,44 +408,19 @@ body{--wp--preset--duotone--blue-red:url(#wp-duotone-blue-red);}</style>
       document.getElementById('content').scrollIntoView({ behavior: 'smooth' });
     }
   </script>
-   <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js"></script>
- <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-messaging.js"></script>
-
-
- <script type="module">
-	// Import the functions you need from the SDKs you need
-	
-	// TODO: Add SDKs for Firebase products that you want to use
-	// https://firebase.google.com/docs/web/setup#available-libraries
-  
-	// Your web app's Firebase configuration
-	// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-	const firebaseConfig = {
-	  apiKey: "AIzaSyCVeeFxPw1jF5f_rHyofYg0fOEXD3qivbw",
-	  authDomain: "push-38cca.firebaseapp.com",
-	  projectId: "push-38cca",
-	  storageBucket: "push-38cca.appspot.com",
-	  messagingSenderId: "311060497968",
-	  appId: "1:311060497968:web:feb247239ee93c067ccff5",
-	  measurementId: "G-HXG39MJW55"
-	};
-  
-	// Initialize Firebase
-	firebase.initializeApp(firebaseConfig);
-	const messaging = firebase.messaging();
-	console.log("Firebase initialized successfully");
-	  </script>
-
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 <script>
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('./firebase-messaging-sw.js')
-        .then(function(registration) {
-            console.log('Service Worker registered with scope:', registration.scope);
-        })
-        .catch(function(err) {
-            console.log('Service Worker registration failed:', err);
-        });
-    }
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "d9a3cbd1-f885-49a1-bb95-7ad0fc83cdf8",
+      safari_web_id: "web.onesignal.auto.38b1a4de-a361-440e-ae28-b71c05790af2",
+      notifyButton: {
+        enable: true,
+      },
+    });
+  });
 </script>
+
 </body>
 </html>
