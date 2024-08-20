@@ -504,13 +504,13 @@ body{--wp--preset--duotone--blue-red:url(#wp-duotone-blue-red);}</style>
 					body: body || 'You have a new message.',
 					icon: icon || 'https://aroundtheville.com/wp-content/uploads/2024/06/food-trucks-cover.webp',
 					data:{
-					url:  url ||  'https://aroundtheville.com'}
+					url: url }
 				});
 			}
 		});
 
 		if ('serviceWorker' in navigator) {
-			navigator.serviceWorker.register('/firebase-messaging-sw.js')
+			navigator.serviceWorker.register('https://aroundtheville.com/firebase-messaging-sw.js')
 				.then((registration) => {
 					console.log('Service Worker registered with scope:', registration.scope);
 				})
