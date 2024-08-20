@@ -78,9 +78,9 @@
 
   gtag('config', 'G-TYCR7B2T5J');
 </script>
-<script defer src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
 
-<script defer  src="https://www.gstatic.com/firebasejs/10.13.0/firebase-messaging.js"></script>
+<script defer  src="https://www.gstatic.com/firebasejs/10.13.0/firebase-messaging-compat.js"></script>
 
 <style id="wp-block-navigation-link-inline-css">.wp-block-navigation .wp-block-navigation-item__label{overflow-wrap:break-word}.wp-block-navigation .wp-block-navigation-item__description{display:none}.link-ui-tools{border-top:1px solid #f0f0f0;padding:8px}.link-ui-block-inserter{padding-top:8px}.link-ui-block-inserter__back{margin-left:8px;text-transform:uppercase}.components-popover-pointer-events-trap{background-color:initial;cursor:pointer;inset:0;position:fixed;z-index:1000000}</style>
 <link rel="stylesheet" id="wp-block-navigation-css" href="./wp-includes/blocks/navigation/style.min.css?ver=6.5.5" media="all">
@@ -435,18 +435,32 @@ body{--wp--preset--duotone--blue-red:url(#wp-duotone-blue-red);}</style>
   // Request notification permission and get token
   async function requestPermissionAndGetToken() {
     try {
-      const permission = await Notification.requestPermission();
-      if (permission === 'granted') {
-        console.log('Notification permission granted.');
-        const token = await getToken(messaging, { vapidKey: ' BIY-MD_GAt2gzgWXmHpvR3ZlNlhSnNutGQekIQLc2ImYEpKJaS7LdqYKt8y4f6K_zoHrxJfAyjYQFoMONqxv4Tk ' });
-        console.log('FCM Token:', token);
-      } else {
-        console.log('Unable to get permission to notify.');
-      }
+        // Request notification permission from the user
+        const permission = await Notification.requestPermission();
+        if (permission === 'granted') {
+            console.log('Notification permission granted.');
+
+            // Log the VAPID key to ensure it's correct (be cautious about exposing sensitive data)
+            console.log('Using VAPID key:', 'BIY-MD_GAt2gzgWXmHpvR3ZlNlhSnNutGQekIQLc2ImYEpKJaS7LdqYKt8y4f6K_zoHrxJfAyjYQFoMONqxv4Tk');
+
+            // Get the FCM token
+            const token = await getToken(messaging, { vapidKey: 'BIY-MD_GAt2gzgWXmHpvR3ZlNlhSnNutGQekIQLc2ImYEpKJaS7LdqYKt8y4f6K_zoHrxJfAyjYQFoMONqxv4Tk' });
+            
+            // Log the FCM token
+            console.log('FCM Token:', token);
+        } else {
+            console.log('Unable to get permission to notify.');
+        }
     } catch (error) {
-      console.error('Error during notification setup:', error);
+        // Handle and log errors
+        console.error('Error during notification setup:', error);
+
+        // Check if the error is related to base64 decoding
+        if (error instanceof DOMException && error.name === 'InvalidCharacterError') {
+            console.error('Base64 decoding error:', error.message);
+        }
     }
-  }
+}
 
   document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('subscribe').addEventListener('click', () => {
@@ -457,8 +471,8 @@ body{--wp--preset--duotone--blue-red:url(#wp-duotone-blue-red);}</style>
       console.log('Message received:', payload);
       const { title, body, icon } = payload.notification || {};
       if (Notification.permission === 'granted') {
-        new Notification(title || 'No Title', {
-          body: body || 'No Body',
+        new Notification(title || 'Thank You For Subscribing', {
+          body: body || 'test',
           icon: icon || '/default-icon.png'
         });
       }
