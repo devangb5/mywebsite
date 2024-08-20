@@ -415,79 +415,110 @@ body{--wp--preset--duotone--blue-red:url(#wp-duotone-blue-red);}</style>
   </script>
 
 
-	<script type="module">
-  import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js';
-  import { getMessaging, getToken, onMessage } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-messaging.js';
+<script type="module">
+	import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js';
+	import { getMessaging, getToken, deleteToken, onMessage } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-messaging.js';
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyCVeeFxPw1jF5f_rHyofYg0fOEXD3qivbw",
-    authDomain: "push-38cca.firebaseapp.com",
-    databaseURL: "https://push-38cca-default-rtdb.firebaseio.com",
-    projectId: "push-38cca",
-    storageBucket: "push-38cca.appspot.com",
-    messagingSenderId: "311060497968",
-    appId: "1:311060497968:web:feb247239ee93c067ccff5",
-    measurementId: "G-HXG39MJW55"
-  };
-  const app = initializeApp(firebaseConfig);
-  const messaging = getMessaging(app);
+	// Firebase configuration
+	const firebaseConfig = {
+		apiKey: "AIzaSyCVeeFxPw1jF5f_rHyofYg0fOEXD3qivbw",
+		authDomain: "push-38cca.firebaseapp.com",
+		databaseURL: "https://push-38cca-default-rtdb.firebaseio.com",
+		projectId: "push-38cca",
+		storageBucket: "push-38cca.appspot.com",
+		messagingSenderId: "311060497968",
+		appId: "1:311060497968:web:feb247239ee93c067ccff5",
+		measurementId: "G-HXG39MJW55"
+	};
 
-  // Request notification permission and get token
-  async function requestPermissionAndGetToken() {
-    try {
-        // Request notification permission from the user
-        const permission = await Notification.requestPermission();
-        if (permission === 'granted') {
-            console.log('Notification permission granted.');
+	// Initialize Firebase
+	const app = initializeApp(firebaseConfig);
+	const messaging = getMessaging(app);
 
-            // Log the VAPID key to ensure it's correct (be cautious about exposing sensitive data)
-            console.log('Using VAPID key:', 'BIY-MD_GAt2gzgWXmHpvR3ZlNlhSnNutGQekIQLc2ImYEpKJaS7LdqYKt8y4f6K_zoHrxJfAyjYQFoMONqxv4Tk');
+	let isSubscribed = false; // Track subscription status
 
-            // Get the FCM token
-            const token = await getToken(messaging, { vapidKey: 'BIY-MD_GAt2gzgWXmHpvR3ZlNlhSnNutGQekIQLc2ImYEpKJaS7LdqYKt8y4f6K_zoHrxJfAyjYQFoMONqxv4Tk' });
-            
-            // Log the FCM token
-            console.log('FCM Token:', token);
-        } else {
-            console.log('Unable to get permission to notify.');
-        }
-    } catch (error) {
-        // Handle and log errors
-        console.error('Error during notification setup:', error);
+	async function requestPermissionAndGetToken() {
+		try {
+			const permission = await Notification.requestPermission();
+			if (permission === 'granted') {
+				console.log('Notification permission granted.');
 
-        // Check if the error is related to base64 decoding
-        if (error instanceof DOMException && error.name === 'InvalidCharacterError') {
-            console.error('Base64 decoding error:', error.message);
-        }
-    }
-}
+				// Get the FCM token
+				const token = await getToken(messaging, { vapidKey: 'BIY-MD_GAt2gzgWXmHpvR3ZlNlhSnNutGQekIQLc2ImYEpKJaS7LdqYKt8y4f6K_zoHrxJfAyjYQFoMONqxv4Tk' });
+				
+				if (token) {
+					console.log('FCM Token:', token);
+					alert('Thank you for subscribing!');
+					isSubscribed = true; // Update subscription status
+					updateButtonText();
+				} else {
+					console.log('No registration token available. Request permission to generate one.');
+				}
+			} else {
+				console.log('Unable to get permission to notify.');
+			}
+		} catch (error) {
+			console.error('Error during notification setup:', error);
+		}
+	}
 
-  document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('subscribe').addEventListener('click', () => {
-      requestPermissionAndGetToken();
-    });
+	async function unsubscribeFromNotifications() {
+		try {
+			const token = await getToken(messaging, { vapidKey: 'BIY-MD_GAt2gzgWXmHpvR3ZlNlhSnNutGQekIQLc2ImYEpKJaS7LdqYKt8y4f6K_zoHrxJfAyjYQFoMONqxv4Tk' });
+			if (token) {
+				await deleteToken(messaging);
+				console.log('Unsubscribed and token deleted.');
+				alert('You have unsubscribed from notifications.');
+				isSubscribed = false; // Update subscription status
+				updateButtonText();
+			} else {
+				console.log('No registration token available.');
+			}
+		} catch (error) {
+			console.error('Error during unsubscription:', error);
+		}
+	}
 
-    onMessage(messaging, (payload) => {
-      console.log('Message received:', payload);
-      const { title, body, icon } = payload.notification || {};
-      if (Notification.permission === 'granted') {
-        new Notification(title || 'Thank You For Subscribing', {
-          body: body || 'test',
-          icon: icon || '/default-icon.png'
-        });
-      }
-    });
+	function updateButtonText() {
+		const button = document.getElementById('subscribe');
+		button.textContent = isSubscribed ? 'Unsubscribe' : 'SUBSCRIBE';
+	}
 
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/firebase-messaging-sw.js')
-        .then((registration) => {
-          console.log('Service Worker registered with scope:', registration.scope);
-        })
-        .catch((error) => {
-          console.error('Service Worker registration failed:', error);
-        });
-    }
-  });
+	document.addEventListener('DOMContentLoaded', () => {
+		// Update button text when the page loads
+		updateButtonText();
+
+		document.getElementById('subscribe').addEventListener('click', () => {
+			if (isSubscribed) {
+				unsubscribeFromNotifications();
+			} else {
+				requestPermissionAndGetToken();
+			}
+		});
+
+		onMessage(messaging, (payload) => {
+			console.log('Message received:', payload);
+			const { title, body, icon } = payload.notification || {};
+			if (Notification.permission === 'granted') {
+				new Notification(title || 'New Notification', {
+					body: body || 'You have a new message.',
+					icon: icon || 'https://aroundtheville.com/wp-content/uploads/2024/06/food-trucks-cover.webp',
+					data:{
+					url:  url ||  'https://aroundtheville.com'}
+				});
+			}
+		});
+
+		if ('serviceWorker' in navigator) {
+			navigator.serviceWorker.register('/firebase-messaging-sw.js')
+				.then((registration) => {
+					console.log('Service Worker registered with scope:', registration.scope);
+				})
+				.catch((error) => {
+					console.error('Service Worker registration failed:', error);
+				});
+		}
+	});
 </script>
 
   
