@@ -157,7 +157,7 @@
 
 @media (max-width: 480px) {
   .blog-item {
-      flex-basis: 25%; /* One item per row on even smaller screens */
+      flex-basis: 100%; /* One item per row on even smaller screens */
   }
 }
 
