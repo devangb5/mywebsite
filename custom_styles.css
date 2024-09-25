@@ -174,10 +174,24 @@
 }
 
 .toc {
-  
-  padding: 10px;
-  
+  border: 1px solid rgb(65,33,15);;
+  border-radius: 5px;
+  padding: 0px 10px 0px 10px;
+  margin: 10px 0;
 }
+
+.toc h2 {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between; /* Space between items */
+  align-items: center; /* Center items vertically */
+}
+
+.toc h2 span {
+  transition: transform 0.3s ease;
+  margin-left: 10px; /* Space between text and symbol */
+}
+
 .toc ul {
   list-style-type: none;
   padding: 0;
@@ -189,7 +203,7 @@
 }
 .toc a {
   text-decoration: none;
-  color: blue;
+  color:var(--wp--preset--color--luminous-vivid-amber) ;
 }
 .toc a:hover {
   text-decoration: underline;
