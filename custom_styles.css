@@ -195,6 +195,7 @@
 .toc ul {
   list-style-type: none;
   padding: 0;
+  display:none;
   
 }
 .toc li {
