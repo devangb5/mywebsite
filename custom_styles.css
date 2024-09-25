@@ -178,7 +178,7 @@
   border-radius: 5px;
   padding: 0px 10px 0px 10px;
   margin: 10px 0;
-  display:none;
+  
 }
 
 .toc h2 {
@@ -196,7 +196,7 @@
 .toc ul {
   list-style-type: none;
   padding: 0;
- 
+  display:none;
   
 }
 .toc li {
