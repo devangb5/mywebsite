@@ -348,4 +348,17 @@ flex-wrap:wrap !important;
 	  right: 0px; /* On mouse-over, make the elements appear as they should */
 	}
 
-  
+  .wp-block-columns {
+    flex-direction: row-reverse;
+  }
+
+  .alignright{
+    float:left !important;
+  }
+  .wp-container-core-navigation-is-layout-1.wp-container-core-navigation-is-layout-1{
+    justify-content: flex-end !important;
+  }
+
+  .items-justified-left {
+    justify-content: flex-end !important;
+  }
