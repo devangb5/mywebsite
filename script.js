@@ -16,7 +16,7 @@ function scrollFunction() {
   } else {
     mybutton.style.display = "none";
   }
-}
+};
 
 // When the user clicks on the button, scroll to the top of the document
 function topFunction() {
@@ -31,7 +31,6 @@ const tocList = document.querySelector('.toc ul');
 // Check if both elements exist before adding the event listener
 if (tocHeader && tocList) {
     tocHeader.addEventListener('click', function() {
-        // Toggle display property
         tocList.style.display = tocList.style.display === 'block' ? 'none' : 'block';
     });
-}
+};

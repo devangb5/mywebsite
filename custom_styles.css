@@ -188,10 +188,7 @@
   align-items: center; /* Center items vertically */
 }
 
-.toc h2 span {
-  transition: transform 0.3s ease;
-  margin-left: 10px; /* Space between text and symbol */
-}
+
 
 .toc ul {
   list-style-type: none;
