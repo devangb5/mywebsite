@@ -24,10 +24,14 @@ function topFunction() {
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 };
 
-
+// Select the TOC header and list
 const tocHeader = document.querySelector('.toc h2');
 const tocList = document.querySelector('.toc ul');
 
-tocHeader.addEventListener('click', function() {
-    tocList.style.display = tocList.style.display === 'block' ? 'none' : 'block';
-});
+// Check if both elements exist before adding the event listener
+if (tocHeader && tocList) {
+    tocHeader.addEventListener('click', function() {
+        // Toggle display property
+        tocList.style.display = tocList.style.display === 'block' ? 'none' : 'block';
+    });
+}
