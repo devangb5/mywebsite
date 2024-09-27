@@ -24,13 +24,15 @@ function topFunction() {
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 };
 
-// Select the TOC header and list
-const tocHeader = document.querySelector('.toc h2');
-const tocList = document.querySelector('.toc ul');
+document.addEventListener("DOMContentLoaded", function() {
+  const tocHeader = document.querySelector('.toc h2');
+  const tocList = document.querySelector('.toc ul');
 
-// Check if both elements exist before adding the event listener
-if (tocHeader && tocList) {
-    tocHeader.addEventListener('click', function() {
-        tocList.style.display = tocList.style.display === 'block' ? 'none' : 'block';
-    });
-};
+  if (tocHeader && tocList) {
+      tocHeader.addEventListener('click', function() {
+          const isExpanded = tocList.style.display === 'block';
+          tocList.style.display = isExpanded ? 'none' : 'block'; // Toggle display
+          tocHeader.setAttribute('aria-expanded', !isExpanded); // Update ARIA attribute
+      });
+  }
+});
