@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+</head>
+<body>
+    <script type="module">
+        // Import Firebase
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
+        import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js";
+
+        // Your Firebase configuration
+        const firebaseConfig = {
+  apiKey: "AIzaSyB_M3kGDf-esoqMDLnxfYQ4CV8-xboYQwA",
+  authDomain: "around-the-ville.firebaseapp.com",
+  databaseURL: "https://around-the-ville-default-rtdb.firebaseio.com",
+  projectId: "around-the-ville",
+  storageBucket: "around-the-ville.firebasestorage.app",
+  messagingSenderId: "431313384928",
+  appId: "1:431313384928:web:d4693371a9e0083d1f6785"
+};
+
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Get the current URL path
+        const currentPath = window.location.pathname;
+
+        async function redirect() {
+            try {
+                // Query Firestore to find a document where `link` matches the current path
+                const blogsRef = collection(db, "blogs");
+                const q = query(blogsRef, where("link", "==", currentPath));
+                const querySnapshot = await getDocs(q);
+
+                if (!querySnapshot.empty) {
+                    // If a match is found, redirect using the `blog_number`
+                    const doc = querySnapshot.docs[0].data();
+                    const blogNumber = doc.blog_number;
+                    if (blogNumber) {
+                        window.location.replace(`https://devangb5.github.io/concept/article.html?blog_number=${blogNumber}`);
+                    } else {
+                        throw new Error("blog_number field is missing in Firestore.");
+                    }
+                } else {
+                    // If no match is found, fallback to homepage or other page
+                    window.location.replace('https://devangb5.github.io/concept/');
+                }
+            } catch (error) {
+                console.error("Error querying Firestore:", error);
+                window.location.replace('https://devangb5.github.io/concept/'); // Fallback redirect
+            }
+        }
+
+        redirect();
+    </script>
+</body>
+</html>
