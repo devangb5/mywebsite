@@ -28,44 +28,35 @@
         const db = getFirestore(app);
 
         // Get the current URL path
-        const currentPath = window.location.pathname;
-        console.log("Current Path:", currentPath);
+  // Assuming currentPath contains the path like "/about.html" and you need to match against the full URL
+const currentPath = window.location.pathname;  // e.g., '/about.html'
 
-        async function redirect() {
-            console.log("Current path:", currentPath); // Debug: Current path
+// Remove leading slash from currentPath
+const formattedPath = currentPath.startsWith('/') ? currentPath.substring(1) : currentPath;
 
-            try {
-                // Query Firestore to find a document where `link` matches the current path
-                const blogsRef = collection(db, "blogs");
+// Construct the full URL
+const fullUrl = `https://aroundtheville.com/${formattedPath}`;
 
-// Correct usage of template literals for string concatenation
-const q = query(blogsRef, where("link", "==", `https://aroundtheville.com/${currentPath}`));
+// Query Firestore using the full URL
+const blogsRef = collection(db, "blogs");
+const q = query(blogsRef, where("link", "==", fullUrl));
 
 const querySnapshot = await getDocs(q);
 
-                console.log("Query snapshot size:", querySnapshot.size); // Debug: Snapshot size
+// Handle query results
+if (!querySnapshot.empty) {
+    const doc = querySnapshot.docs[0].data();
+    const blogNumber = doc.blog_number;
+    if (blogNumber) {
+        window.location.replace(`https://devangb5.github.io/concept/article.html?blog_number=${blogNumber}`);
+    } else {
+        console.error("blog_number field is missing in Firestore.");
+    }
+} else {
+    console.log("No matching blog found for the current path.");
+    window.location.replace('https://devangb5.github.io/concept/'); // Fallback redirect
+}
 
-                if (!querySnapshot.empty) {
-                    const docData = querySnapshot.docs[0].data();
-                    console.log("Matched document data:", docData); // Debug: Document data
-
-                    const blogNumber = docData.blog_number;
-                    if (blogNumber) {
-                        console.log(`Redirecting to blog number: ${blogNumber}`); // Debug: Blog number
-                        window.location.replace(`https://devangb5.github.io/concept/article.html?blog_number=${blogNumber}`);
-                    } else {
-                        console.error("Error: blog_number field is missing in Firestore.");
-                        window.location.replace('https://devangb5.github.io/concept/'); // Fallback redirect
-                    }
-                } else {
-                    console.error("No matching document found in Firestore.");
-                    window.location.replace('https://devangb5.github.io/concept/'); // Fallback redirect
-                }
-            } catch (error) {
-                console.error("Error querying Firestore:", error);
-                window.location.replace('https://devangb5.github.io/concept/'); // Fallback redirect
-            }
-        }
 
         redirect();
     </script>
