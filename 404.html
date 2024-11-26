@@ -29,6 +29,7 @@
 
         // Get the current URL path
         const currentPath = window.location.pathname;
+        console.log("Current Path:", currentPath);
 
         async function redirect() {
             console.log("Current path:", currentPath); // Debug: Current path
@@ -36,8 +37,11 @@
             try {
                 // Query Firestore to find a document where `link` matches the current path
                 const blogsRef = collection(db, "blogs");
-                const q = query(blogsRef, where("link", "==", currentPath));
-                const querySnapshot = await getDocs(q);
+
+// Correct usage of template literals for string concatenation
+const q = query(blogsRef, where("link", "==", `https://aroundtheville.com/${currentPath}`));
+
+const querySnapshot = await getDocs(q);
 
                 console.log("Query snapshot size:", querySnapshot.size); // Debug: Snapshot size
 
