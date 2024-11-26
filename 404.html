@@ -31,24 +31,31 @@
         const currentPath = window.location.pathname;
 
         async function redirect() {
+            console.log("Current path:", currentPath); // Debug: Current path
+
             try {
                 // Query Firestore to find a document where `link` matches the current path
                 const blogsRef = collection(db, "blogs");
                 const q = query(blogsRef, where("link", "==", currentPath));
                 const querySnapshot = await getDocs(q);
 
+                console.log("Query snapshot size:", querySnapshot.size); // Debug: Snapshot size
+
                 if (!querySnapshot.empty) {
-                    // If a match is found, redirect using the `blog_number`
-                    const doc = querySnapshot.docs[0].data();
-                    const blogNumber = doc.blog_number;
+                    const docData = querySnapshot.docs[0].data();
+                    console.log("Matched document data:", docData); // Debug: Document data
+
+                    const blogNumber = docData.blog_number;
                     if (blogNumber) {
+                        console.log(`Redirecting to blog number: ${blogNumber}`); // Debug: Blog number
                         window.location.replace(`https://devangb5.github.io/concept/article.html?blog_number=${blogNumber}`);
                     } else {
-                        throw new Error("blog_number field is missing in Firestore.");
+                        console.error("Error: blog_number field is missing in Firestore.");
+                        window.location.replace('https://devangb5.github.io/concept/'); // Fallback redirect
                     }
                 } else {
-                    // If no match is found, fallback to homepage or other page
-                    window.location.replace('https://devangb5.github.io/concept/');
+                    console.error("No matching document found in Firestore.");
+                    window.location.replace('https://devangb5.github.io/concept/'); // Fallback redirect
                 }
             } catch (error) {
                 console.error("Error querying Firestore:", error);
